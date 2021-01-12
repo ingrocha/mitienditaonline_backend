@@ -1,0 +1,32 @@
+{
+  "name": "mitiendita_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node ./scripts/seeds.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "email-validator": "^2.0.4",
+    "express": "^4.17.1",
+    "express-winston": "^4.0.5",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.20",
+    "mysql2": "^2.2.5",
+    "request": "^2.88.2",
+    "sequelize": "^6.3.5",
+    "socket.io": "^2.3.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

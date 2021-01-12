@@ -1,0 +1,195 @@
+{
+  meta: {
+    req: {
+      headers: {
+        'user-agent': 'PostmanRuntime/7.26.8',
+        accept: '*/*',
+        'postman-token': '7fed0056-bf77-47fa-b849-d00cc56be978',
+        host: 'localhost:8080',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-type': 'application/x-www-form-urlencoded',
+        'content-length': '96'
+      },
+      query: {}
+    },
+    res: {
+      body: { message: 'superRoles is not associated to superUsuarios!' }
+    },
+    responseTime: 4,
+    httpRequest: {
+      requestMethod: 'GET',
+      requestUrl: 'http://localhost:8080/api/superusuario',
+      protocol: 'HTTP/1.1',
+      remoteIp: '1',
+      requestSize: 382,
+      userAgent: 'PostmanRuntime/7.26.8',
+      referrer: undefined,
+      status: 500,
+      latency: { seconds: 0, nanos: 4000000 },
+      responseSize: 60
+    }
+  },
+  level: 'info',
+  message: 'HTTP GET /api/superusuario',
+  timestamp: '2020-11-17T18:05:38.812Z'
+}
+{
+  meta: {
+    req: {
+      headers: {
+        'user-agent': 'PostmanRuntime/7.26.8',
+        accept: '*/*',
+        'postman-token': '2892eab3-a0ad-4b4e-bf15-d73ad3ff3028',
+        host: 'localhost:8080',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-type': 'application/x-www-form-urlencoded',
+        'content-length': '96'
+      },
+      query: {}
+    },
+    res: {
+      body: { message: 'superRoles is not associated to superUsuarios!' }
+    },
+    responseTime: 1,
+    httpRequest: {
+      requestMethod: 'GET',
+      requestUrl: 'http://localhost:8080/api/superusuario',
+      protocol: 'HTTP/1.1',
+      remoteIp: '1',
+      requestSize: 382,
+      userAgent: 'PostmanRuntime/7.26.8',
+      referrer: undefined,
+      status: 500,
+      latency: { seconds: 0, nanos: 1000000 },
+      responseSize: 60
+    }
+  },
+  level: 'info',
+  message: 'HTTP GET /api/superusuario',
+  timestamp: '2020-11-17T18:06:01.789Z'
+}
+{
+  meta: {
+    req: {
+      headers: {
+        'user-agent': 'PostmanRuntime/7.26.8',
+        accept: '*/*',
+        'postman-token': 'a979c704-5b8e-497e-9709-9687bd037488',
+        host: 'localhost:8080',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-type': 'application/x-www-form-urlencoded',
+        'content-length': '96'
+      },
+      query: {}
+    },
+    res: {
+      body: { message: 'superRoles is not associated to superUsuarios!' }
+    },
+    responseTime: 1,
+    httpRequest: {
+      requestMethod: 'GET',
+      requestUrl: 'http://localhost:8080/api/superusuario/activos',
+      protocol: 'HTTP/1.1',
+      remoteIp: '1',
+      requestSize: 390,
+      userAgent: 'PostmanRuntime/7.26.8',
+      referrer: undefined,
+      status: 500,
+      latency: { seconds: 0, nanos: 1000000 },
+      responseSize: 60
+    }
+  },
+  level: 'info',
+  message: 'HTTP GET /api/superusuario/activos',
+  timestamp: '2020-11-17T18:11:02.586Z'
+}
+{
+  meta: {
+    req: {
+      headers: {
+        'user-agent': 'PostmanRuntime/7.26.8',
+        accept: '*/*',
+        'postman-token': '16636925-b715-4e9a-b76e-761672a97b17',
+        host: 'localhost:8080',
+        'accept-encoding': 'gzip, deflate, br',
+        connection: 'keep-alive',
+        'content-type': 'application/x-www-form-urlencoded',
+        'content-length': '35'
+      },
+      query: {}
+    },
+    res: {
+      body: {
+        superRoles: {
+          id: 4,
+          nombre: 'SuperUsuario',
+          permisos: '{}',
+          updatedAt: '2020-11-17T18:24:01.238Z',
+          createdAt: '2020-11-17T18:24:01.238Z'
+        }
+      }
+    },
+    responseTime: 15,
+    httpRequest: {
+      requestMethod: 'POST',
+      requestUrl: 'http://localhost:8080/api/superrol',
+      protocol: 'HTTP/1.1',
+      remoteIp: '1',
+      requestSize: 318,
+      userAgent: 'PostmanRuntime/7.26.8',
+      referrer: undefined,
+      status: 200,
+      latency: { seconds: 0, nanos: 15000000 },
+      responseSize: 141
+    }
+  },
+  level: 'info',
+  message: 'HTTP POST /api/superrol',
+  timestamp: '2020-11-17T18:24:01.255Z'
+}
+{
+  meta: {
+    req: {
+      headers: {
+        host: 'localhost:8080',
+        accept: 'application/json',
+        'content-type': 'application/json',
+        'content-length': '232',
+        connection: 'close'
+      },
+      query: {}
+    },
+    res: {
+      body: {
+        superUsuario: {
+          id: 16,
+          actionType: 'create',
+          table: 'superRoles',
+          prevValues: '{"id":null}',
+          newValues: '{"id":4,"nombre":"SuperUsuario","permisos":"{}","createdAt":"2020-11-17T18:24:01.238Z","updatedAt":"2020-11-17T18:24:01.238Z"}',
+          updatedAt: '2020-11-17T18:24:01.270Z',
+          createdAt: '2020-11-17T18:24:01.270Z'
+        }
+      }
+    },
+    responseTime: 19,
+    httpRequest: {
+      requestMethod: 'POST',
+      requestUrl: 'http://localhost:8080/api/auditLogs',
+      protocol: 'HTTP/1.1',
+      remoteIp: '127.0.0.1',
+      requestSize: 384,
+      userAgent: undefined,
+      referrer: undefined,
+      status: 200,
+      latency: { seconds: 0, nanos: 19000000 },
+      responseSize: 335
+    }
+  },
+  level: 'info',
+  message: 'HTTP POST /api/auditLogs',
+  timestamp: '2020-11-17T18:24:01.290Z'
+}
