@@ -11,7 +11,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    return await queryInterface.bulkInsert("superroles", [
+    return await queryInterface.bulkInsert("superRoles", [
       {
         nombre: "Soporte",
         permisos: "{}",
@@ -28,6 +28,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete("superroles", { nombre: "Soporte" }, {});
+    await queryInterface.bulkDelete("superRoles", { nombre: "Soporte" }, {});
   },
 };

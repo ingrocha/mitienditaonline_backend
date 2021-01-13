@@ -15,7 +15,7 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
       },
       simbolo: {
-        type: DataTypes.STRING(3),
+        type: DataTypes.STRING(10),
         allowNull: false,
       },
       kit: {

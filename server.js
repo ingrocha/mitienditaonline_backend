@@ -19,9 +19,9 @@ app.use(cors());
 require("./functions/LoggerRequest")(app);
 
 // db.sequelize.sync();
-const opts = {
-  exclude: ["id", "createdAt", "updatedAt"],
-};
+// const opts = {
+//   exclude: ["id", "createdAt", "updatedAt"],
+// };
 db.sequelize.sync({ force: true });
 // db.sequelize.sync();
 // path.basename(__filename)
