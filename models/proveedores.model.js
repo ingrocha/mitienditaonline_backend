@@ -2,7 +2,7 @@
 
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
-    "ventas",
+    "proveedores",
     {
       id: {
         type: DataTypes.INTEGER(20).UNSIGNED,
@@ -16,21 +16,29 @@ module.exports = function (sequelize, DataTypes) {
       },
       usuarios_id: {
         type: DataTypes.INTEGER(20).UNSIGNED,
-        allowNull: false,
+        allowNull: true,
       },
-      clientes_id: {
-        type: DataTypes.INTEGER(20).UNSIGNED,
-        allowNull: false,
+      nombre: {
+        type: DataTypes.TEXT,
       },
-      total: {
-        type: DataTypes.DECIMAL(10, 2),
+      representante: {
+        type: DataTypes.TEXT,
       },
-      credito: {
-        type: DataTypes.BOOLEAN,
+      telefonos: {
+        type: DataTypes.TEXT,
+      },
+      correos: {
+        type: DataTypes.TEXT,
+      },
+      pagina: {
+        type: DataTypes.TEXT,
+      },
+      comentarios: {
+        type: DataTypes.TEXT,
       },
     },
     {
-      tableName: "ventas",
+      tableName: "proveedores",
     }
   );
 };

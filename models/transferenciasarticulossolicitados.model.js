@@ -2,7 +2,7 @@
 
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
-    "ventas",
+    "transferenciasarticulossolicitados",
     {
       id: {
         type: DataTypes.INTEGER(20).UNSIGNED,
@@ -10,27 +10,32 @@ module.exports = function (sequelize, DataTypes) {
         primaryKey: true,
         autoIncrement: true,
       },
-      sucursales_id: {
+      transferencias_id: {
         type: DataTypes.INTEGER(20).UNSIGNED,
         allowNull: false,
       },
-      usuarios_id: {
+      articulos_id: {
         type: DataTypes.INTEGER(20).UNSIGNED,
         allowNull: false,
       },
-      clientes_id: {
-        type: DataTypes.INTEGER(20).UNSIGNED,
+      codigo: {
+        type: DataTypes.TEXT,
         allowNull: false,
       },
-      total: {
-        type: DataTypes.DECIMAL(10, 2),
+      descipcion: {
+        type: DataTypes.TEXT,
+        allowNull: false,
       },
-      credito: {
-        type: DataTypes.BOOLEAN,
+      simbolo: {
+        type: DataTypes.STRING(10),
+        allowNull: false,
+      },
+      cantidad: {
+        type: DataTypes.FLOAT,
       },
     },
     {
-      tableName: "ventas",
+      tableName: "transferenciasarticulossolicitados",
     }
   );
 };

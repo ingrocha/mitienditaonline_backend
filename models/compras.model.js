@@ -2,7 +2,7 @@
 
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
-    "ventas",
+    "compras",
     {
       id: {
         type: DataTypes.INTEGER(20).UNSIGNED,
@@ -18,19 +18,17 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.INTEGER(20).UNSIGNED,
         allowNull: false,
       },
-      clientes_id: {
+      proveedores_id: {
         type: DataTypes.INTEGER(20).UNSIGNED,
         allowNull: false,
       },
       total: {
         type: DataTypes.DECIMAL(10, 2),
-      },
-      credito: {
-        type: DataTypes.BOOLEAN,
+        allowNull: false,
       },
     },
     {
-      tableName: "ventas",
+      tableName: "compras",
     }
   );
 };

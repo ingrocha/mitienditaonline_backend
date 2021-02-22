@@ -2,7 +2,7 @@
 
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
-    "ventas",
+    "ventasformapago",
     {
       id: {
         type: DataTypes.INTEGER(20).UNSIGNED,
@@ -10,7 +10,11 @@ module.exports = function (sequelize, DataTypes) {
         primaryKey: true,
         autoIncrement: true,
       },
-      sucursales_id: {
+      ventas_id: {
+        type: DataTypes.INTEGER(20).UNSIGNED,
+        allowNull: false,
+      },
+      formaspago_id: {
         type: DataTypes.INTEGER(20).UNSIGNED,
         allowNull: false,
       },
@@ -18,19 +22,9 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.INTEGER(20).UNSIGNED,
         allowNull: false,
       },
-      clientes_id: {
-        type: DataTypes.INTEGER(20).UNSIGNED,
-        allowNull: false,
-      },
-      total: {
-        type: DataTypes.DECIMAL(10, 2),
-      },
-      credito: {
-        type: DataTypes.BOOLEAN,
-      },
     },
     {
-      tableName: "ventas",
+      tableName: "ventasformapago",
     }
   );
 };

@@ -55,14 +55,11 @@ exports.update = (req, res) => {
   const id = req.params.id;
   // console.log(req.body);
   unidadmedidas
-    .update(
-      req.body,
-      {
-        where: { id: id },
-        individualHooks: true,
-      },
-      { usuario: req.usuario }
-    )
+    .update(req.body, {
+      where: { id: id },
+      individualHooks: true,
+      usuario: req.usuario,
+    })
     .then((num) => {
       // console.log(num.length);
       if (num == 1) {
@@ -87,13 +84,11 @@ exports.delete = (req, res) => {
   const id = req.params.id;
 
   unidadmedidas
-    .destroy(
-      {
-        where: { id: id },
-        individualHooks: true,
-      },
-      { usuario: req.usuario }
-    )
+    .destroy({
+      where: { id: id },
+      individualHooks: true,
+      usuario: req.usuario,
+    })
     .then((num) => {
       console.log(num);
       if (num == 1) {
@@ -116,13 +111,11 @@ exports.delete = (req, res) => {
 // Delete all Tutorials from the database.
 exports.deleteAll = (req, res) => {
   unidadmedidas
-    .destroy(
-      {
-        where: {},
-        truncate: false,
-      },
-      { usuario: req.usuario }
-    )
+    .destroy({
+      where: {},
+      truncate: false,
+      usuario: req.usuario,
+    })
     .then((nums) => {
       res.send({ message: `${nums} elementos fueron borrados!` });
     })

@@ -89,13 +89,10 @@ exports.update = (req, res) => {
   const id = req.params.id;
   // console.log(req.body);
   superUsuarios
-    .update(
-      req.body,
-      {
-        where: { id: id },
-      },
-      { usuario: req.usuario }
-    )
+    .update(req.body, {
+      where: { id: id },
+      usuario: req.usuario,
+    })
     .then((num) => {
       if (num == 1) {
         res.send({
@@ -121,13 +118,10 @@ exports.updatePassword = (req, res) => {
     pass: bcrypt.hashSync(req.body.pass, 10),
   };
   superUsuarios
-    .update(
-      usuario,
-      {
-        where: { id: id },
-      },
-      { usuario: req.usuario }
-    )
+    .update(usuario, {
+      where: { id: id },
+      usuario: req.usuario,
+    })
     .then((num) => {
       if (num == 1) {
         res.send({
@@ -151,12 +145,10 @@ exports.delete = (req, res) => {
   const id = req.params.id;
 
   superUsuarios
-    .destroy(
-      {
-        where: { id: id },
-      },
-      { usuario: req.usuario }
-    )
+    .destroy({
+      where: { id: id },
+      usuario: req.usuario,
+    })
     .then((num) => {
       if (num == 1) {
         res.send({
@@ -178,13 +170,11 @@ exports.delete = (req, res) => {
 // Delete all Tutorials from the database.
 exports.deleteAll = (req, res) => {
   superUsuarios
-    .destroy(
-      {
-        where: {},
-        truncate: false,
-      },
-      { usuario: req.usuario }
-    )
+    .destroy({
+      where: {},
+      truncate: false,
+      usuario: req.usuario,
+    })
     .then((nums) => {
       res.send({ message: `${nums} elementos fueron borrados!` });
     })

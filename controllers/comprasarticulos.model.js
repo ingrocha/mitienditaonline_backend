@@ -1,27 +1,21 @@
+const { includes } = require("lodash");
 const db = require("../models");
-const bcrypt = require("bcryptjs");
-const usuarios = db.usuarios;
-const roles = db.roles;
-const Op = db.Sequelize.Op;
+const comprasarticulos = db.comprasarticulos;
+const articulos = db.articulos;
 
-// Create and Save a new Tutorial
 exports.create = (req, res) => {
-  // Create a Tutorial
-  const Usuario = {
-    usuario: req.body.usuario,
-    password: bcrypt.hashSync(req.body.password, 10),
-    nombre: req.body.nombre,
-    telefono: req.body.telefono,
-    superroles_id: req.body.roles_id,
-    fechavenc: req.body.fechavenc,
-    activo: req.body.activo,
+  const ComprasArticulo = {
+    compras_id: req.body.compras_id,
+    articulos_id: req.body.articulos_id,
+    descripcion: req.body.descripcion,
+    cantidad: req.body.cantidad,
+    preciou: req.body.preciou,
   };
 
-  usuarios
-    .create(Usuario, { usuario: req.usuario })
+  comprasarticulos
+    .create(ComprasArticulo, { usuario: req.usuario })
     .then((data) => {
-      data.pass = "";
-      res.send({ usuario: data });
+      res.send({ comprasarticulo: data });
     })
     .catch((err) => {
       res.status(500).send({
@@ -31,31 +25,10 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  usuarios
-    .findAll({
-      attributes: ["activo", "nombre", "usuario"],
-      include: [roles],
-    })
+  comprasarticulos
+    .findAll([{ include: [articulos] }])
     .then((data) => {
-      res.send({ usuarios: data });
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Sucedio un error al obtener!",
-      });
-    });
-};
-
-// Retrieve all Tutorials from the database.
-exports.findAllActivos = (req, res) => {
-  usuarios
-    .findAll({
-      attributes: ["activo", "nombre", "usuario"],
-      include: [roles],
-      where: { activo: 1 },
-    })
-    .then((data) => {
-      res.send({ usuarios: data });
+      res.send({ comprasarticulos: data });
     })
     .catch((err) => {
       res.status(500).send({
@@ -68,14 +41,11 @@ exports.findAllActivos = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  usuarios
-    .findByPk(id, {
-      attributes: ["activo", "nombre", "usuario"],
-      include: [roles],
-    })
+  comprasarticulos
+    .findByPk(id, [{ include: [articulos] }])
     .then((data) => {
       data.pass = "";
-      res.send({ usuario: data });
+      res.send({ comprasarticulo: data });
     })
     .catch((err) => {
       res.status(500).send({
@@ -88,41 +58,14 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
   // console.log(req.body);
-  usuarios
+  comprasarticulos
     .update(req.body, {
       where: { id: id },
+      individualHooks: true,
       usuario: req.usuario,
     })
     .then((num) => {
-      if (num == 1) {
-        res.send({
-          message: "Se actualizo correctamente.",
-        });
-      } else {
-        res.send({
-          message: `No se pudo actualizar id=${id}!`,
-        });
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: "Error al actualizar id=" + id,
-      });
-    });
-};
-
-// Update a Tutorial by the id in the request
-exports.updatePassword = (req, res) => {
-  const id = req.params.id;
-  const usuario = {
-    pass: bcrypt.hashSync(req.body.pass, 10),
-  };
-  usuarios
-    .update(usuario, {
-      where: { id: id },
-      usuario: req.usuario,
-    })
-    .then((num) => {
+      // console.log(num.length);
       if (num == 1) {
         res.send({
           message: "Se actualizo correctamente.",
@@ -144,12 +87,14 @@ exports.updatePassword = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  usuarios
+  comprasarticulos
     .destroy({
       where: { id: id },
+      individualHooks: true,
       usuario: req.usuario,
     })
     .then((num) => {
+      console.log(num);
       if (num == 1) {
         res.send({
           message: "Fue borrado correctamente!",
@@ -169,9 +114,10 @@ exports.delete = (req, res) => {
 
 // Delete all Tutorials from the database.
 exports.deleteAll = (req, res) => {
-  usuarios
+  const compras_id = req.params.compras_id;
+  comprasarticulos
     .destroy({
-      where: {},
+      where: { compras_id: compras_id },
       truncate: false,
       usuario: req.usuario,
     })

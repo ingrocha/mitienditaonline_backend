@@ -1,27 +1,21 @@
 const db = require("../models");
-const bcrypt = require("bcryptjs");
-const usuarios = db.usuarios;
-const roles = db.roles;
-const Op = db.Sequelize.Op;
+const transferenciasarticulosautorizados =
+  db.transferenciasarticulosautorizados;
 
-// Create and Save a new Tutorial
 exports.create = (req, res) => {
-  // Create a Tutorial
-  const Usuario = {
-    usuario: req.body.usuario,
-    password: bcrypt.hashSync(req.body.password, 10),
-    nombre: req.body.nombre,
-    telefono: req.body.telefono,
-    superroles_id: req.body.roles_id,
-    fechavenc: req.body.fechavenc,
-    activo: req.body.activo,
+  const Transferencia = {
+    transferencias_id: req.body.transferencias_id,
+    articulos_id: req.body.articulos_id,
+    codigo: req.body.codigo,
+    descipcion: req.body.descipcion,
+    simbolo: req.body.simbolo,
+    cantidad: req.body.cantidad,
   };
 
-  usuarios
-    .create(Usuario, { usuario: req.usuario })
+  transferenciasarticulosautorizados
+    .create(Transferencia, { usuario: req.usuario })
     .then((data) => {
-      data.pass = "";
-      res.send({ usuario: data });
+      res.send({ transferencia: data });
     })
     .catch((err) => {
       res.status(500).send({
@@ -31,31 +25,10 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  usuarios
-    .findAll({
-      attributes: ["activo", "nombre", "usuario"],
-      include: [roles],
-    })
+  transferenciasarticulosautorizados
+    .findAll()
     .then((data) => {
-      res.send({ usuarios: data });
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Sucedio un error al obtener!",
-      });
-    });
-};
-
-// Retrieve all Tutorials from the database.
-exports.findAllActivos = (req, res) => {
-  usuarios
-    .findAll({
-      attributes: ["activo", "nombre", "usuario"],
-      include: [roles],
-      where: { activo: 1 },
-    })
-    .then((data) => {
-      res.send({ usuarios: data });
+      res.send({ transferenciasarticulosautorizados: data });
     })
     .catch((err) => {
       res.status(500).send({
@@ -68,14 +41,11 @@ exports.findAllActivos = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  usuarios
-    .findByPk(id, {
-      attributes: ["activo", "nombre", "usuario"],
-      include: [roles],
-    })
+  transferenciasarticulosautorizados
+    .findByPk(id)
     .then((data) => {
       data.pass = "";
-      res.send({ usuario: data });
+      res.send({ unidadmedida: data });
     })
     .catch((err) => {
       res.status(500).send({
@@ -88,41 +58,14 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   const id = req.params.id;
   // console.log(req.body);
-  usuarios
+  transferenciasarticulosautorizados
     .update(req.body, {
       where: { id: id },
+      individualHooks: true,
       usuario: req.usuario,
     })
     .then((num) => {
-      if (num == 1) {
-        res.send({
-          message: "Se actualizo correctamente.",
-        });
-      } else {
-        res.send({
-          message: `No se pudo actualizar id=${id}!`,
-        });
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: "Error al actualizar id=" + id,
-      });
-    });
-};
-
-// Update a Tutorial by the id in the request
-exports.updatePassword = (req, res) => {
-  const id = req.params.id;
-  const usuario = {
-    pass: bcrypt.hashSync(req.body.pass, 10),
-  };
-  usuarios
-    .update(usuario, {
-      where: { id: id },
-      usuario: req.usuario,
-    })
-    .then((num) => {
+      // console.log(num.length);
       if (num == 1) {
         res.send({
           message: "Se actualizo correctamente.",
@@ -144,12 +87,14 @@ exports.updatePassword = (req, res) => {
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  usuarios
+  transferenciasarticulosautorizados
     .destroy({
       where: { id: id },
+      individualHooks: true,
       usuario: req.usuario,
     })
     .then((num) => {
+      console.log(num);
       if (num == 1) {
         res.send({
           message: "Fue borrado correctamente!",
@@ -169,7 +114,7 @@ exports.delete = (req, res) => {
 
 // Delete all Tutorials from the database.
 exports.deleteAll = (req, res) => {
-  usuarios
+  transferenciasarticulosautorizados
     .destroy({
       where: {},
       truncate: false,
