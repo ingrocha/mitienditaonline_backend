@@ -4,16 +4,19 @@ const comprasarticulos = db.comprasarticulos;
 const articulos = db.articulos;
 
 exports.create = (req, res) => {
+  // const ComprasArticulo = {
+  //   compras_id: req.body.compras_id,
+  //   articulos_id: req.body.articulos_id,
+  //   descripcion: req.body.descripcion,
+  //   cantidad: req.body.cantidad,
+  //   preciou: req.body.preciou,
+  // };
   const ComprasArticulo = {
-    compras_id: req.body.compras_id,
-    articulos_id: req.body.articulos_id,
-    descripcion: req.body.descripcion,
-    cantidad: req.body.cantidad,
-    preciou: req.body.preciou,
+    ...req.body,
   };
 
   comprasarticulos
-    .create(ComprasArticulo, { usuario: req.usuario })
+    .createBulk(ComprasArticulo, { usuario: req.usuario })
     .then((data) => {
       res.send({ comprasarticulo: data });
     })

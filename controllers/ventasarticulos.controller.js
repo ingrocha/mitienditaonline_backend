@@ -2,8 +2,11 @@ const db = require("../models");
 const ventasarticulos = db.ventasarticulos;
 
 exports.create = (req, res) => {
+  const Articulos = {
+    ...req.body,
+  };
   ventasarticulos
-    .createBulk({}, { usuario: req.usuario })
+    .createBulk(Articulos, { usuario: req.usuario })
     .then((nums) => {
       res.send({ message: `${nums} elementos fueron agregados!` });
     })
